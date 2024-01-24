@@ -1,11 +1,12 @@
 package Indications;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.LinkedHashMap;
 
 public class HeatingIndication extends Indication {
     private double lastValue;
-    private Date lastDate;
+    private LocalDate lastDate;
     private LinkedHashMap<Date, Double> history;
 
 
@@ -19,7 +20,7 @@ public class HeatingIndication extends Indication {
     }
 
     @Override
-    public LinkedHashMap<Date, Double> getHistory() {
+    public LinkedHashMap<LocalDate, Double> getHistory() {
         return super.getHistory();
     }
 
@@ -29,7 +30,7 @@ public class HeatingIndication extends Indication {
     }
 
     @Override
-    public Date getLastDate() {
+    public LocalDate getLastDate() {
         return super.getLastDate();
     }
 

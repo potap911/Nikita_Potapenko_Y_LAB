@@ -1,12 +1,13 @@
 package Indications;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.LinkedHashMap;
 
 public class HotWaterIndication extends Indication {
     private double lastValue;
-    private Date lastDate;
-    private LinkedHashMap<Date, Double> history;
+    private LocalDate lastDate;
+    private LinkedHashMap<LocalDate, Double> history;
 
     public HotWaterIndication() {
         history = new LinkedHashMap<>();
@@ -18,7 +19,7 @@ public class HotWaterIndication extends Indication {
     }
 
     @Override
-    public LinkedHashMap<Date, Double> getHistory() {
+    public LinkedHashMap<LocalDate, Double> getHistory() {
         return super.getHistory();
     }
 
@@ -28,7 +29,7 @@ public class HotWaterIndication extends Indication {
     }
 
     @Override
-    public Date getLastDate() {
+    public LocalDate getLastDate() {
         return super.getLastDate();
     }
 

@@ -16,6 +16,16 @@ public class Admin {
         dateRegistration = new Date();
     }
 
+
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public Date getDateRegistration() {
         return dateRegistration;
     }
