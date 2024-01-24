@@ -33,13 +33,13 @@ public class Printer {
             HeatingIndication heatingIndication = user.getHeatingIndication();
 
             System.out.println("\tАктуальные показания счетчика холодной воды:");
-            System.out.println(coldWaterIndication.getLastDate() + " - " + coldWaterIndication.getLastValue());
+            coldWaterIndication.printActualIndications();
 
             System.out.println("\tАктуальные показания счетчика горячей воды:");
-            System.out.println(hotWaterIndication.getLastDate() + " - " + hotWaterIndication.getLastValue());
+            hotWaterIndication.printActualIndications();
 
             System.out.println("\tАктуальные показания счетчика отопления:");
-            System.out.println(heatingIndication.getLastDate() + " - " + heatingIndication.getLastValue());
+            heatingIndication.printActualIndications();
     }
 
     public static void printIndicationsToMonth(User user, int month) {
@@ -48,13 +48,13 @@ public class Printer {
             HeatingIndication heatingIndication = user.getHeatingIndication();
 
             System.out.println("\tПоказания счетчика холодной воды в месяце: " + coldWaterIndication);
-
+            coldWaterIndication.printIndicationsToMonth(month);
 
             System.out.println("\tАктуальные показания счетчика горячей воды в месяце: " + coldWaterIndication);
-            System.out.println(hotWaterIndication.getLastDate() + " - " + hotWaterIndication.getLastValue());
+            hotWaterIndication.printIndicationsToMonth(month);
 
             System.out.println("\tАктуальные показания счетчика отопленияв в месяце: " + coldWaterIndication);
-            System.out.println(heatingIndication.getLastDate() + " - " + heatingIndication.getLastValue());
+            heatingIndication.printIndicationsToMonth(month);
     }
 
 

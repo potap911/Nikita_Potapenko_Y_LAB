@@ -4,12 +4,13 @@ import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.LinkedHashMap;
 
-public abstract class Indication {
-    private double lastValue;
-    private LocalDate lastDate;
-    private LinkedHashMap<LocalDate, Double> history;
+interface Indication {
+    void addIndication(double value);
+    void printHistory();
+    void printIndicationsToMonth(int month);
+    void printActualIndications();
 
-    public void addIndication(double value) {
+    default void addIndication(LinkedHashMap<LocalDate, Double> history, LocalDate lastDate, double lastValue, double value) {
         LocalDate currDate = LocalDate.from(ZonedDateTime.now().minusMonths(1).toInstant());
         if (currDate.isBefore(lastDate)) {
             lastDate = LocalDate.now();
@@ -19,25 +20,15 @@ public abstract class Indication {
         } else System.out.println("Нельзя добавить новое показание. С момента последнего показания не прошел месяц");
     }
 
-    public LinkedHashMap<LocalDate, Double> getHistory() {
-        return history;
-    }
-
-    public double getLastValue() {
-        return lastValue;
-    }
-
-    public LocalDate getLastDate() {
-        return lastDate;
-    }
-
-    public void printHistory() {
+    default void printHistory(LinkedHashMap<LocalDate, Double> history) {
+        if (history.isEmpty()) System.out.println("История пуста");
         for (LocalDate date : history.keySet()) {
             System.out.println(date + " - " + history.get(date));
         }
     }
 
-    public void printIndicationsToMonth(int month) {
+    default void printIndicationsToMonth(LinkedHashMap<LocalDate, Double> history, int month) {
+        if (history.isEmpty()) System.out.println("История пуста");
         for (LocalDate date : history.keySet()) {
             if (date.getMonth().getValue() == month) {
                 System.out.println(date + " - " + history.get(date));
@@ -46,7 +37,10 @@ public abstract class Indication {
         }
     }
 
-
+    default void printActualIndications(LocalDate lastDate, double lastValue) {
+        if (lastDate == null || lastValue == 0.0) System.out.println("История пуста");
+        System.out.println(lastDate + " - " + lastValue);
+    }
 
 
 }

@@ -20,21 +20,17 @@ public final class Registration {
         String login = inputLogin();
         String password = inputPassword();
 
-        if (admins != null) {
-            if (status == 1 && admins.get(login).getPassword().equals(password)) {
+            if (status == 1 && admins != null && admins.get(login).getPassword().equals(password)) {
                 currAdmin = admins.get(login);
                 currUser = null;
                 System.out.println("Добро пожаловать, " + currAdmin.getLogin());
-            } else System.out.println("Нет такого администратора");
-        }
+            }
 
-        else if (users != null) {
-            if (users != null && status == 2 && users.get(login).getPassword().equals(password)) {
+            else if (users != null && users != null && status == 2 && users.get(login).getPassword().equals(password)) {
                 currUser = users.get(login);
                 currAdmin = null;
                 System.out.println("Добро пожаловать, " + currUser.getLogin());
             } else System.out.println("Нет такого пользователя");
-        } else System.out.println("Нет такого пользователя");
     }
 
     public static void logOut() {
@@ -55,7 +51,7 @@ public final class Registration {
         if (status == 1  && !admins.containsKey(login)) {
             admins.put(login, new Admin(login, password));
             System.out.println("Успешная регистрация администратора " + login);
-        } else if (status == 2 && users.containsKey(login)) {
+        } else if (status == 2 && !users.containsKey(login)) {
             users.put(login, new User(login, password));
             System.out.println("Успешная регистрация пользователя " + login);
         } else System.out.println("Такой пользователь уже зарегестрирован ранее!");
@@ -67,13 +63,13 @@ public final class Registration {
         int status = choiceStatusUser();
 
         System.out.println("Введите логин:");
-        String login = scanner.nextLine();
+        String login = inputLogin();
 
         if (agreeWarning(login)) {
             if (status == 1 && admins != null && admins.containsKey(login)) {
                 admins.remove(login);
                 System.out.println(login + " удален!");
-            } else if (status == 2 && users.containsKey(login)) {
+            } else if (status == 2 && users != null && users.containsKey(login)) {
                 users.remove(login);
                 System.out.println(login + " удален!");
             } else System.out.println("Нет такого пользователя");
