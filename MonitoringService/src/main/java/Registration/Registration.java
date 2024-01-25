@@ -3,6 +3,7 @@ package Registration;
 import org.potapenko.Printer;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public final class Registration {
@@ -10,7 +11,7 @@ public final class Registration {
     private static HashMap<String, User> users;
     private static Admin currAdmin;
     private static User currUser;
-    private static Scanner scanner;
+    private static Scanner scan;
 
     public static void logIn() {
         System.out.println("\tАвторизация");
@@ -20,17 +21,22 @@ public final class Registration {
         String login = inputLogin();
         String password = inputPassword();
 
-            if (status == 1 && admins != null && admins.get(login).getPassword().equals(password)) {
+        try {
+            if (status == 1 && admins.get(login).getPassword().equals(password)) {
                 currAdmin = admins.get(login);
                 currUser = null;
                 System.out.println("Добро пожаловать, " + currAdmin.getLogin());
             }
 
-            else if (users != null && users != null && status == 2 && users.get(login).getPassword().equals(password)) {
+            else if (status == 2 && users.get(login).getPassword().equals(password)) {
                 currUser = users.get(login);
                 currAdmin = null;
                 System.out.println("Добро пожаловать, " + currUser.getLogin());
             } else System.out.println("Нет такого пользователя");
+        } catch (NullPointerException exception) {
+            System.out.println("Нет такого пользователя");
+        }
+
     }
 
     public static void logOut() {
@@ -65,62 +71,99 @@ public final class Registration {
         System.out.println("Введите логин:");
         String login = inputLogin();
 
-        if (agreeWarning(login)) {
-            if (status == 1 && admins != null && admins.containsKey(login)) {
-                admins.remove(login);
-                System.out.println(login + " удален!");
-            } else if (status == 2 && users != null && users.containsKey(login)) {
-                users.remove(login);
-                System.out.println(login + " удален!");
-            } else System.out.println("Нет такого пользователя");
+        try {
+            if (agreeWarning(login)) {
+                if (status == 1 && admins.containsKey(login)) {
+                    admins.remove(login);
+                    System.out.println(login + " удален!");
+                } else if (status == 2 && users.containsKey(login)) {
+                    users.remove(login);
+                    System.out.println(login + " удален!");
+                } else System.out.println("Нет такого пользователя");
+            }
+        } catch (NullPointerException exception) {
+            System.out.println("Нет такого пользователя");
         }
     }
 
     private static boolean agreeWarning(String login) {
         System.out.println("Точно хотите удалить пользователя с логином: " + login + "?");
         System.out.println("Введите Y/N или enter - 'Y' по умолчанию");
-        if (scanner.nextLine().equals("Y") || scanner.nextLine().equals("\n")) return true;
+        if (scan.next().equals("Y") || scan.next().equals("\n")) return true;
         else return false;
     }
 
     private static int choiceStatusUser() {
-        System.out.println("Выберите, кого хотите зарегестрировать или авторизовать:");
-        System.out.println("1. Администратор");
-        System.out.println("2. Пользователь");
-        System.out.println("Введите: '1' или '2'");
-        return scanner.nextInt();
+        int input;
+
+        while (true) {
+            System.out.println("Выберите, кого хотите зарегестрировать или авторизовать:");
+            System.out.println("1. Администратор");
+            System.out.println("2. Пользователь");
+            System.out.println("Введите: '1' или '2'");
+            while (!scan.hasNextInt()) {
+                System.out.println("Это не число, попробуйте еще раз!");
+                scan.next();
+            }
+            input = scan.nextInt();
+            if (input == 1 || input == 2) break;
+            System.out.println("Нет такого пункта, попробуйте еще раз");
+        }
+
+        return input;
     }
 
     private static int choiceStatusIndication() {
-        System.out.println("Выберите, кого рода показания хотите отправить:");
-        System.out.println("1. Показания счетчика холодной воды");
-        System.out.println("2. Показания счетчика горячей воды");
-        System.out.println("3. Показания счетчика отопления");
-        System.out.println("Введите: '1' или '2' или '3'");
-        return scanner.nextInt();
+        int input;
+
+        while (true) {
+            System.out.println("Выберите, кого рода показания хотите отправить:");
+            System.out.println("1. Показания счетчика холодной воды");
+            System.out.println("2. Показания счетчика горячей воды");
+            System.out.println("3. Показания счетчика отопления");
+            System.out.println("Введите: '1' или '2' или '3'");
+            while (!scan.hasNextInt()) {
+                System.out.println("Это не число, попробуйте еще раз!");
+                scan.next();
+            }
+            input = scan.nextInt();
+            if (input == 1 || input == 2 || input == 3) break;
+            System.out.println("Нет такого пункта, попробуйте еще раз");
+        }
+
+        return input;
     }
-
-
 
     private static String inputLogin() {
         System.out.println("Введите логин:");
-        return scanner.next();
+        return scan.next();
     }
 
     private static String inputPassword() {
         System.out.println("Введите пароль:");
-        return scanner.next();
+        return scan.next();
     }
 
-    private static int inputValue() {
-        System.out.println("Значение:");
-        return scanner.nextInt();
+    private static double inputValue() {
+        double input;
+
+        while (true) {
+            System.out.println("Введите значение:");
+            while (!scan.hasNextDouble()) {
+                System.out.println("Это не число, попробуйте еще раз!");
+                scan.next();
+            }
+            input = scan.nextDouble();
+            if (input > 0) break;
+            else System.out.println("Введите значение больше нуля!");
+        }
+        return input;
     }
 
     public static void putIndication() {
         if (currUser != null && currAdmin == null) {
             int status = choiceStatusIndication();
-            int value = inputValue();
+            double value = inputValue();
 
             if (status == 1) currUser.getColdWaterIndication().addIndication(value);
             if (status == 2) currUser.getHotWaterIndication().addIndication(value);
@@ -129,11 +172,11 @@ public final class Registration {
     }
 
     // 1 - history, 2 - actual, 3 - toMonth
-    public static void printInfo(int status) {
+    public static void getInfo(int status) {
         int month = 0;
         if (status == 3) {
-            System.out.println("Введите искомы месяц:");
-            month = scanner.nextInt();
+            System.out.println("Введите искомый месяц:");
+            month = scan.nextInt();
         }
 
         if (currAdmin != null && currUser == null) {
@@ -155,6 +198,6 @@ public final class Registration {
         users = new HashMap<>();
         currAdmin = null;
         currUser = null;
-        scanner = new Scanner(System.in);
+        scan = new Scanner(System.in);
     }
 }

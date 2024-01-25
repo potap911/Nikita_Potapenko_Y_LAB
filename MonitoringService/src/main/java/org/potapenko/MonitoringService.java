@@ -16,7 +16,7 @@ public final class MonitoringService {
 
         while (!input.equals("q")) {
             System.out.println("Введите команду:");
-            input = scanner.nextLine();
+            input = scanner.nextLine().trim();
             command(input);
         }
 
@@ -30,9 +30,10 @@ public final class MonitoringService {
             case "logout"  : Registration.logOut(); break;
             case "reg"  : Registration.add(); break;
             case "rm"   : Registration.remove(); break;
-            case "get -h" : Registration.printInfo(1); break;
-            case "get -a"  : Registration.printInfo(2); break;
-            case "get -m"  : Registration.printInfo(3); break;
+            case "get -h" : Registration.getInfo(1); break;
+            case "get -a"  : Registration.getInfo(2); break;
+            case "get -m"  : Registration.getInfo(3); break;
+            case "put"  : Registration.putIndication(); break;
             case "q"  : System.exit(0); break;
             default :
                 System.out.println("Неверная команда, попробуйте еще");

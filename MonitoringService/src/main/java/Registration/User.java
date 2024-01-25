@@ -4,35 +4,35 @@ import Indications.ColdWaterIndication;
 import Indications.HeatingIndication;
 import Indications.HotWaterIndication;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class User {
     private String login;
     private String password;
-    private ColdWaterIndication coldWaterIndication;
-    private HotWaterIndication hotWaterIndication;
-    private HeatingIndication heatingIndication;
-    private Date dateRegistration;
+    private ColdWaterIndication coldWater;
+    private HotWaterIndication hotWater;
+    private HeatingIndication heating;
+    private LocalDate dateRegistration;
 
     public User(String login, String password) {
         this.login = login;
         this.password = password;
-        coldWaterIndication = new ColdWaterIndication();
-        hotWaterIndication = new HotWaterIndication();
-        heatingIndication = new HeatingIndication();
-        dateRegistration = new Date();
+        coldWater = new ColdWaterIndication();
+        hotWater = new HotWaterIndication();
+        heating = new HeatingIndication();
+        dateRegistration = LocalDate.now();
     }
 
     public ColdWaterIndication getColdWaterIndication() {
-        return coldWaterIndication;
+        return coldWater;
     }
 
     public HotWaterIndication getHotWaterIndication() {
-        return hotWaterIndication;
+        return hotWater;
     }
 
     public HeatingIndication getHeatingIndication() {
-        return heatingIndication;
+        return heating;
     }
 
     public String getLogin() {
@@ -43,7 +43,7 @@ public class User {
         return password;
     }
 
-    public Date getDateRegistration() {
+    public LocalDate getDateRegistration() {
         return dateRegistration;
     }
 

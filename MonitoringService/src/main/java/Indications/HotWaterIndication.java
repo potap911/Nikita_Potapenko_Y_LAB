@@ -21,18 +21,18 @@ public class HotWaterIndication implements Indication {
     }
 
     @Override
-    public void printHistory() {
-        Indication.super.printHistory(history);
+    public String getHistoryIndications() {
+        return Indication.super.getHistoryIndications(history);
     }
 
     @Override
-    public void printIndicationsToMonth(int month) {
-        Indication.super.printIndicationsToMonth(history, month);
+    public String getIndicationToMonth(int month) {
+        return Indication.super.getIndicationToMonth(history, month);
     }
 
     @Override
-    public void printActualIndications() {
-        Indication.super.printActualIndications(lastDate, lastValue);
+    public String getActualIndication() {
+        return Indication.super.getActualIndication(lastDate, lastValue);
     }
 
 }

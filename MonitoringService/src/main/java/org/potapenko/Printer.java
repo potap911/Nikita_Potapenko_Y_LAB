@@ -5,58 +5,52 @@ import Indications.HeatingIndication;
 import Indications.HotWaterIndication;
 import Registration.User;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-
 public class Printer {
 
 
     public static void printHistory(User user) {
-            ColdWaterIndication coldWaterIndication = user.getColdWaterIndication();
-            HotWaterIndication hotWaterIndication = user.getHotWaterIndication();
-            HeatingIndication heatingIndication = user.getHeatingIndication();
+            ColdWaterIndication coldWater = user.getColdWaterIndication();
+            HotWaterIndication hotWater = user.getHotWaterIndication();
+            HeatingIndication heating = user.getHeatingIndication();
 
-            System.out.println("\tПоказания счетчика холодной воды:");
-            coldWaterIndication.printHistory();
+            System.out.println("\tПоказания счетчиков пользователя: " + user.getLogin());
 
-            System.out.println("\tПоказания счетчика горячей воды:");
-            hotWaterIndication.printHistory();
+            System.out.println("Показания счетчика холодной воды: ");
+            System.out.println(coldWater.getHistoryIndications());
 
-            System.out.println("\tПоказания счетчика отопления:");
-            heatingIndication.printHistory();
+            System.out.println("Показания счетчика горячей воды: ");
+            System.out.println(hotWater.getHistoryIndications());
+
+            System.out.println("Показания счетчика отопления: ");
+            System.out.println(heating.getHistoryIndications());
+            System.out.println();
     }
 
     public static void printActualIndications(User user) {
-            ColdWaterIndication coldWaterIndication = user.getColdWaterIndication();
-            HotWaterIndication hotWaterIndication = user.getHotWaterIndication();
-            HeatingIndication heatingIndication = user.getHeatingIndication();
+            ColdWaterIndication coldWater = user.getColdWaterIndication();
+            HotWaterIndication hotWater = user.getHotWaterIndication();
+            HeatingIndication heating = user.getHeatingIndication();
 
-            System.out.println("\tАктуальные показания счетчика холодной воды:");
-            coldWaterIndication.printActualIndications();
+            System.out.println("\tПоказания счетчиков пользователя: " + user.getLogin());
 
-            System.out.println("\tАктуальные показания счетчика горячей воды:");
-            hotWaterIndication.printActualIndications();
+            System.out.println("Актуальные показания счетчика холодной воды: " + coldWater.getActualIndication());
+            System.out.println("Актуальные показания счетчика горячей воды: " + hotWater.getActualIndication());
+            System.out.println("Актуальные показания счетчика отопления: " + heating.getActualIndication());
+            System.out.println();
 
-            System.out.println("\tАктуальные показания счетчика отопления:");
-            heatingIndication.printActualIndications();
     }
 
     public static void printIndicationsToMonth(User user, int month) {
-            ColdWaterIndication coldWaterIndication = user.getColdWaterIndication();
-            HotWaterIndication hotWaterIndication = user.getHotWaterIndication();
-            HeatingIndication heatingIndication = user.getHeatingIndication();
+            ColdWaterIndication coldWater = user.getColdWaterIndication();
+            HotWaterIndication hotWater = user.getHotWaterIndication();
+            HeatingIndication heating = user.getHeatingIndication();
 
-            System.out.println("\tПоказания счетчика холодной воды в месяце: " + coldWaterIndication);
-            coldWaterIndication.printIndicationsToMonth(month);
+            System.out.println("\tПоказания счетчиков пользователя: " + user.getLogin());
 
-            System.out.println("\tАктуальные показания счетчика горячей воды в месяце: " + coldWaterIndication);
-            hotWaterIndication.printIndicationsToMonth(month);
+            System.out.println("Показания счетчика холодной воды в этом месяце: " + coldWater.getIndicationToMonth(month));
+            System.out.println("Показания счетчика горячей воды в этом месяце: " + hotWater.getIndicationToMonth(month));
+            System.out.println("Показания счетчика отопленияв в этом месяце: " + heating.getIndicationToMonth(month));
+            System.out.println();
 
-            System.out.println("\tАктуальные показания счетчика отопленияв в месяце: " + coldWaterIndication);
-            heatingIndication.printIndicationsToMonth(month);
     }
-
-
-
 }

@@ -2,21 +2,18 @@ package Registration;
 
 import Registration.User;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Admin {
     private String login;
     private String password;
-    private Date dateRegistration;
+    private LocalDate dateRegistration;
 
     public Admin(String login, String password) {
         this.login = login;
         this.password = password;
-        dateRegistration = new Date();
+        dateRegistration = LocalDate.now();
     }
-
-
 
     public String getLogin() {
         return login;
@@ -26,7 +23,7 @@ public class Admin {
         return password;
     }
 
-    public Date getDateRegistration() {
+    public LocalDate getDateRegistration() {
         return dateRegistration;
     }
 }
