@@ -34,7 +34,7 @@ public final class MonitoringService {
             case "put"  : Registration.putIndication(); break;
             case "q"  : System.exit(0); break;
             default :
-                System.out.println("Неверная команда, попробуйте еще раз");
+                System.out.println("Неверная команда, попробуйте еще раз, или введите команду 'help'");
         }
     }
 

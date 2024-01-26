@@ -39,7 +39,6 @@ public final class Registration {
         } catch (NullPointerException exception) {
             System.out.println("Нет такого пользователя");
         }
-
     }
 
     public static void logOut() {
@@ -131,7 +130,7 @@ public final class Registration {
     }
 
     private static String inputPassword() {
-        /*String password;
+        String password;
         while (true) {
             System.out.println("Введите пароль от 8 знаков и больше:");
             password = scan.next();
@@ -139,9 +138,7 @@ public final class Registration {
             else System.out.println("Введенный пароль слишком простой!");
         }
 
-        return password;*/
-        System.out.println("Введите пароль:");
-        return scan.next();
+        return password;
     }
 
     private static double inputValue() {
@@ -174,6 +171,10 @@ public final class Registration {
 
     // 1 - history, 2 - actual, 3 - toMonth
     public static void getInfo(int status) {
+        if (currAdmin == null && currUser == null) {
+            System.out.println("Вы не авторизованы!");
+            return;
+        }
         int month = 0;
         if (status == 3) {
             System.out.println("Введите искомый месяц:");

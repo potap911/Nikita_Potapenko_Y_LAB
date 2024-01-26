@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.LinkedHashMap;
 
-public class ColdWaterIndication implements Indication{
+public class ColdWaterIndication implements Indication {
     private double lastValue;
     private LocalDate lastDate;
     private LinkedHashMap<LocalDate, Double> history;
