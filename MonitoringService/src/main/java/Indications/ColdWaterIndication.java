@@ -21,8 +21,6 @@ public class ColdWaterIndication implements Indication{
         if (lastDate != null) lastValue = history.get(lastDate);
     }
 
-
-
     @Override
     public String getHistoryIndications() {
         return Indication.super.getHistoryIndications(history);
@@ -36,5 +34,31 @@ public class ColdWaterIndication implements Indication{
     @Override
     public String getActualIndication() {
         return Indication.super.getActualIndication(lastDate, lastValue);
+    }
+
+
+
+    public double getLastValue() {
+        return lastValue;
+    }
+
+    public void setLastValue(double lastValue) {
+        this.lastValue = lastValue;
+    }
+
+    public LocalDate getLastDate() {
+        return lastDate;
+    }
+
+    public void setLastDate(LocalDate lastDate) {
+        this.lastDate = lastDate;
+    }
+
+    public LinkedHashMap<LocalDate, Double> getHistory() {
+        return history;
+    }
+
+    public void setHistory(LinkedHashMap<LocalDate, Double> history) {
+        this.history = history;
     }
 }

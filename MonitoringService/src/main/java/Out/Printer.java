@@ -1,4 +1,4 @@
-package org.potapenko;
+package Out;
 
 import Indications.ColdWaterIndication;
 import Indications.HeatingIndication;
@@ -6,7 +6,6 @@ import Indications.HotWaterIndication;
 import Registration.User;
 
 public class Printer {
-
 
     public static void printHistory(User user) {
             ColdWaterIndication coldWater = user.getColdWaterIndication();
@@ -37,7 +36,6 @@ public class Printer {
             System.out.println("Актуальные показания счетчика горячей воды: " + hotWater.getActualIndication());
             System.out.println("Актуальные показания счетчика отопления: " + heating.getActualIndication());
             System.out.println();
-
     }
 
     public static void printIndicationsToMonth(User user, int month) {
@@ -51,6 +49,5 @@ public class Printer {
             System.out.println("Показания счетчика горячей воды в этом месяце: " + hotWater.getIndicationToMonth(month));
             System.out.println("Показания счетчика отопленияв в этом месяце: " + heating.getIndicationToMonth(month));
             System.out.println();
-
     }
 }
