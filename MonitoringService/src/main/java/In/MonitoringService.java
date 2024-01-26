@@ -14,7 +14,7 @@ public final class MonitoringService {
         printHelp();
 
         while (!input.equals("q")) {
-            System.out.println("Введите команду:");
+            System.out.println("\n\tВведите команду:");
             input = scanner.nextLine().trim();
             command(input);
         }
@@ -28,10 +28,8 @@ public final class MonitoringService {
             case "logout"  : Registration.logOut(); break;
             case "reg"  : Registration.addUser(); break;
             //case "rm"   : Registration.remove(); break;
-            case "get -h" : Registration.getInfo(1); break;
-            case "get -a"  : Registration.getInfo(2); break;
-            case "get -m"  : Registration.getInfo(3); break;
-            case "put"  : Registration.putIndication(); break;
+            case "get" : Registration.getInfo(); break;
+            case "post"  : Registration.putIndication(); break;
             case "q"  : System.exit(0); break;
             default :
                 System.out.println("Неверная команда, попробуйте еще раз, или введите команду 'help'");
@@ -40,16 +38,14 @@ public final class MonitoringService {
 
     private static void printHelp() {
         System.out.println("\tСписок команд:\n" +
+                        "status : статус авторизации\n" +
                         "login  : авторизоваться\n" +
-                        "status  : статус авторизации\n" +
                         "logout : разлогиниться\n" +
                         "reg    : зарегестрировать пользователя\n" +
-                        //"rm     : удалить пользователя\n" +
-                        "get -h : получить историю показаний\n" +
-                        "get -a : получить актуальные показания\n" +
-                        "get -m : получить показания за конкретный месяц\n" +
-                        "put    : отправить показания\n" +
+                        "get    : получить информацию о показаниях\n" +
+                        "post   : отправить показания\n" +
                         "q      : выйти и разлогиниться"
+                        //"rm     : удалить пользователя\n" +
         );
     }
 }

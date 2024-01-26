@@ -1,7 +1,6 @@
 package Indications;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.LinkedHashMap;
 
 public class ColdWaterIndication implements Indication {
@@ -35,8 +34,6 @@ public class ColdWaterIndication implements Indication {
     public String getActualIndication() {
         return Indication.super.getActualIndication(lastDate, lastValue);
     }
-
-
 
     public double getLastValue() {
         return lastValue;

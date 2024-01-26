@@ -16,9 +16,11 @@ public class Printer {
 
             System.out.println("Показания счетчика холодной воды: ");
             System.out.println(coldWater.getHistoryIndications());
+            System.out.println();
 
             System.out.println("Показания счетчика горячей воды: ");
             System.out.println(hotWater.getHistoryIndications());
+            System.out.println();
 
             System.out.println("Показания счетчика отопления: ");
             System.out.println(heating.getHistoryIndications());

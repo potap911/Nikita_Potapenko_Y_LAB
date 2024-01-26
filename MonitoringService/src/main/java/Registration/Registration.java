@@ -54,8 +54,6 @@ public final class Registration {
         else System.out.println("Вы не авторизованы!");
     }
 
-
-
     public static void addUser() {
         System.out.println("\tРегистрация нового пользователя");
 
@@ -72,13 +70,6 @@ public final class Registration {
             users.put(login, new User(login, password));
             System.out.println("Успешная регистрация пользователя " + login);
         } else System.out.println("Такой пользователь уже зарегестрирован ранее!");
-    }
-
-    private static boolean agreeWarning(String login) {
-        System.out.println("Точно хотите удалить пользователя с логином: " + login + "?");
-        System.out.println("Введите Y/N или enter - 'Y' по умолчанию");
-        if (scan.next().equals("Y") || scan.next().equals("\n")) return true;
-        else return false;
     }
 
     private static int choiceStatusUser() {
@@ -170,11 +161,14 @@ public final class Registration {
     }
 
     // 1 - history, 2 - actual, 3 - toMonth
-    public static void getInfo(int status) {
+    public static void getInfo() {
         if (currAdmin == null && currUser == null) {
             System.out.println("Вы не авторизованы!");
             return;
         }
+
+        int status = choiceStatusInfo();
+
         int month = 0;
         if (status == 3) {
             System.out.println("Введите искомый месяц:");
@@ -194,6 +188,28 @@ public final class Registration {
             if (status == 2) Printer.printActualIndications(currUser);
             if (status == 3) Printer.printIndicationsToMonth(currUser, month);
         }
+    }
+
+    private static int choiceStatusInfo() {
+        int input;
+
+        while (true) {
+            System.out.println("Выберите, когого рода информацию хотите получить:");
+            System.out.println("0. Вернуться в стартовое меню");
+            System.out.println("1. Получить всю историю показаний");
+            System.out.println("2. Получить актуальные показания");
+            System.out.println("3. Получить показания за конкретный месяц");
+            System.out.println("Введите: '1' или '2' или '3' или '0' для возврата");
+            while (!scan.hasNextInt()) {
+                System.out.println("Это не число, попробуйте еще раз!");
+                scan.next();
+            }
+            input = scan.nextInt();
+            if (input == 1 || input == 2 || input == 3 || input == 0) break;
+            System.out.println("Нет такого пункта, попробуйте еще раз");
+        }
+
+        return input;
     }
     public static void init() {
         admins = new HashMap<>();
@@ -240,4 +256,11 @@ public final class Registration {
         }
     }
     */
+
+    /*private static boolean agreeWarning(String login) {
+        System.out.println("Точно хотите удалить пользователя с логином: " + login + "?");
+        System.out.println("Введите Y/N или enter - 'Y' по умолчанию");
+        if (scan.next().equals("Y") || scan.next().equals("\n")) return true;
+        else return false;
+    }*/
 }
