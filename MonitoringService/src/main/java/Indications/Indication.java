@@ -1,55 +1,64 @@
 package Indications;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
 
+/**
+ * <h1> Indication </h1>
+ * Класс реализует хранение показаний счетчиков, а также добавление и получение информации о показаниях
+ */
+@Getter
+@Setter
+public class Indication {
+    /** Поле название показания*/
+    private IndicationName name;
+    /** Поле актуальная дата*/
+    private LocalDate actualDate;
+    /** Поле актуальное значение*/
+    private double actualValue;
 
-interface Indication {
-    void addIndication(double value);
-    String getHistoryIndications();
-    String getIndicationToMonth(int month);
-    String getActualIndication();
+    /** Поле история показаний*/
+    private LinkedHashMap<LocalDate, Double> history;
+
+    public Indication(IndicationName name) {
+        this.name = name;
+        actualDate = null;
+        actualValue = 0.0;
+        history = new LinkedHashMap<>();
+    }
 
     /**
      * Метод реализует добавление нового показания в историю. Валидация переданного значения. Валидация даты добавления показания
-     * @param history - история показаний
-     * @param actualDate - актуальная дата
-     * @param actualValue - актуальное значение
-     * @param value - переданное показание
-     * @return - возвращается новая актуальная дата, в случае невозможности добавления показания возвращается null
+     * @param value переданное показание
      */
-    default LocalDate addIndication(LinkedHashMap<LocalDate, Double> history, LocalDate actualDate, double actualValue, double value) {
+    public void addIndication(double value) {
         LocalDate nowDate = LocalDate.now();
 
         if (history.isEmpty()) {
+            actualDate = nowDate;
             actualValue = value;
             history.put(nowDate, actualValue);
             System.out.println("Показание успешно добавлено!");
         }
         else if (nowDate.getMonth().getValue() > actualDate.getMonth().getValue() || nowDate.getYear() > actualDate.getYear()) {
                 if (actualValue <= value) {
+                    actualDate = nowDate;
                     actualValue = value;
                     history.put(nowDate, actualValue);
                     System.out.println("Показание успешно добавлено!");
-                } else {
-                    System.out.println("Переданные показания меньше актуальных!");
-                    return actualDate;
-                }
-            } else {
-            System.out.println("Нельзя добавить новое показание. В этом месяце показания уже поданы!");
-            return actualDate;
-        }
-
-        return nowDate;
+                } else System.out.println("Переданные показания меньше актуальных!");
+            } else System.out.println("Нельзя добавить новое показание. В этом месяце показания уже поданы!");
     }
 
     /**
      * Метод реализует получение информации о истории подачи показаний
-     * @param history - история показаний
      * @return строка - список истории подачи показаний или отсутствие показаний
      */
 
-    default String getHistoryIndications(LinkedHashMap<LocalDate, Double> history) {
+    public String getHistoryIndications() {
         if (history.isEmpty()) return "История пуста";
         StringBuilder builder = new StringBuilder();
         for (LocalDate date : history.keySet()) {
@@ -60,12 +69,11 @@ interface Indication {
 
     /**
      * Метод реализует получение информации о поданных показаниях за конкретный месяц
-     * @param history - история показаний
-     * @param month - запрашиваемый месяц
+     * @param month запрашиваемый месяц
      * @return строка - показание за конкретный месяц или История пуста или отсутствуие показаний за месяц
      */
 
-    default String getIndicationToMonth(LinkedHashMap<LocalDate, Double> history, int month) {
+    public String getIndicationToMonth(int month) {
         if (history.isEmpty()) return "История пуста";
         for (LocalDate date : history.keySet()) {
             if (date.getMonth().getValue() == month) {
@@ -77,12 +85,10 @@ interface Indication {
 
     /**
      * Метод реализует получение информации об актуальных показаниях
-     * @param actualDate - актуальная дата
-     * @param actualValue - актуальное значение
      * @return строка - актуальные показания или История пуста.
      */
 
-    default String getActualIndication(LocalDate actualDate, double actualValue) {
+    public String getActualIndication() {
         if (actualDate == null || actualValue == 0.0) return "История пуста";
         return actualDate + " - " + actualValue;
     }

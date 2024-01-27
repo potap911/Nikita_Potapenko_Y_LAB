@@ -7,20 +7,29 @@ import java.util.LinkedHashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * <h1> RegistrationService </h1>
+ * Тестовый класс для проверки методов класса Indication
+ */
+
 class IndicationTest {
 
-    private static ColdWaterIndication coldWaterActual;
-    private static HotWaterIndication hotWaterActual;
-    private static HeatingIndication heatingActual;
-    private static ColdWaterIndication coldWaterExpected;
-    private static HotWaterIndication hotWaterExpected;
-    private static HeatingIndication heatingExpected;
+    private static Indication coldWaterActual;
+    private static Indication hotWaterActual;
+    private static Indication heatingActual;
+    private static Indication coldWaterExpected;
+    private static Indication hotWaterExpected;
+    private static Indication heatingExpected;
 
+
+    /**
+     * Метод создает тестовые счетчики и истории показаний
+     */
     @BeforeEach
     void initIndications() {
-        coldWaterActual = new ColdWaterIndication(); coldWaterExpected = new ColdWaterIndication();
-        hotWaterActual = new HotWaterIndication(); hotWaterExpected = new HotWaterIndication();
-        heatingActual = new HeatingIndication(); heatingExpected = new HeatingIndication();
+        coldWaterActual = new Indication(IndicationName.COLD_WATER); coldWaterExpected = new Indication(IndicationName.COLD_WATER);
+        hotWaterActual = new Indication(IndicationName.HOT_WATER); hotWaterExpected = new Indication(IndicationName.HOT_WATER);
+        heatingActual = new Indication(IndicationName.HEATING); heatingExpected = new Indication(IndicationName.HEATING);
 
 
         LinkedHashMap<LocalDate, Double> history = new LinkedHashMap<>();
@@ -110,7 +119,7 @@ class IndicationTest {
     @DisplayName("Получение всей истории")
     void getHistoryIndications() {
         String actual = heatingActual.getHistoryIndications();
-        String expected = heatingExpected.getHistoryIndications(heatingExpected.getHistory());
+        String expected = heatingExpected.getHistoryIndications();
         assertEquals(actual, expected);
     }
 
@@ -141,7 +150,7 @@ class IndicationTest {
     @Test
     @DisplayName("Получение актуальных показаний из пустого списка")
     void getActualIndicationAbsent() {
-        HeatingIndication newHeating = new HeatingIndication();
+        Indication newHeating = new Indication(IndicationName.HEATING);
         String actual = newHeating.getActualIndication();
         String expected = "История пуста";
         assertEquals(expected, actual);

@@ -1,6 +1,6 @@
 package In;
 
-import Registration.Registration;
+import Registration.RegistrationService;
 
 import java.util.Scanner;
 
@@ -8,7 +8,6 @@ import java.util.Scanner;
  * <h1> MonitoringService </h1>
  * Статический класс MonitoringService реализует старт сервиса, получение пользовательского ввода,
  * обработку его команд и вызов соответствующего команде алгоритма
- *
  */
 public final class MonitoringService {
 
@@ -17,7 +16,7 @@ public final class MonitoringService {
      */
     public static void startService() {
         Scanner scanner = new Scanner(System.in);
-        Registration.init();
+        RegistrationService.init();
         String input = "";
 
         System.out.println("Добро пожаловать!");
@@ -32,19 +31,19 @@ public final class MonitoringService {
 
     /**
      * Метод реализует обработку ввода пользователя и вызывает соответствующие фабричные методы класса Registration
-     * @param input - ввод пользователя
+     * @param input ввод пользователя
      */
 
     private static void command(String input) {
         switch (input) {
             case "help" : printHelp(); break;
-            case "status" : Registration.printStatusAuthorization(); break;
-            case "login"  : Registration.logIn(); break;
-            case "logout"  : Registration.logOut(); break;
-            case "reg"  : Registration.addUser(); break;
+            case "status" : RegistrationService.printStatusAuthorization(); break;
+            case "login"  : RegistrationService.logIn(); break;
+            case "logout"  : RegistrationService.logOut(); break;
+            case "reg"  : RegistrationService.reg(); break;
             //case "rm"   : Registration.remove(); break;
-            case "get" : Registration.getInfo(); break;
-            case "post"  : Registration.putIndication(); break;
+            case "get" : RegistrationService.getInfo(); break;
+            case "post"  : RegistrationService.putIndication(); break;
             case "q"  : System.exit(0); break;
             default :
                 System.out.println("Неверная команда, попробуйте еще раз, или введите команду 'help'");

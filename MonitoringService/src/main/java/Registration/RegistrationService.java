@@ -9,17 +9,25 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 /**
- * Класс для регистрации, авторизации, хранения пользователей и регистрации действий с ними
- * @param
+ * <h1> RegistrationService </h1>
+ *  Статический класс для регистрации, авторизации, хранения пользователей и регистрации действий с ними
  */
-public final class Registration {
+public final class RegistrationService {
+    /** Поле список администраторов*/
     private static HashMap<String, Admin> admins;
+    /** Поле список пользователей*/
     private static HashMap<String, User> users;
+    /** Поле текущий администратор*/
     private static Admin currAdmin;
+    /** Поле текущий пользователь*/
     private static User currUser;
+    /** Поле объект класса Scanner*/
     private static Scanner scan;
 
 
+    /**
+     * Метод руализует авторизацию пользователя
+     */
 
     public static void logIn() {
         System.out.println("\tАвторизация");
@@ -47,6 +55,10 @@ public final class Registration {
         }
     }
 
+    /**
+     * Метод реализует разлогирование пользователя
+     */
+
     public static void logOut() {
         currAdmin = null;
         currUser = null;
@@ -54,13 +66,21 @@ public final class Registration {
 
     }
 
+    /**
+     * Метод реализует консольный вывод информации о статусе авторизации
+     */
+
     public static void printStatusAuthorization() {
         if (currUser == null && currAdmin != null) System.out.println("Вы авторизованы как администратор!");
         else if (currUser != null && currAdmin == null) System.out.println("Вы авторизованы как пользователь!");
         else System.out.println("Вы не авторизованы!");
     }
 
-    public static void addUser() {
+    /**
+     * Метод реализует регистрацию нового пользователя
+     */
+
+    public static void reg() {
         System.out.println("\tРегистрация нового пользователя");
 
         int status = choiceStatusUser();
@@ -77,6 +97,10 @@ public final class Registration {
             System.out.println("Успешная регистрация пользователя " + login);
         } else System.out.println("Такой пользователь уже зарегестрирован ранее!");
     }
+
+    /**
+     * Метод реализует выбор статуса пользователя
+     */
 
     private static int choiceStatusUser() {
         int input;
@@ -98,6 +122,10 @@ public final class Registration {
 
         return input;
     }
+
+    /**
+     * Метод реализует выбор вида счетчика
+     */
 
     private static int choiceStatusIndication() {
         int input;
@@ -121,10 +149,18 @@ public final class Registration {
         return input;
     }
 
+    /**
+     * Метод реализует консольный ввод логина
+     */
+
     private static String inputLogin() {
         System.out.println("Введите логин:");
         return scan.next();
     }
+
+    /**
+     * Метод реализует ввод паспорта
+     */
 
     private static String inputPassword() {
         String password;
@@ -137,6 +173,10 @@ public final class Registration {
 
         return password;
     }
+
+    /**
+     * Метод реализует ввод значение подоваемого показания
+     */
 
     private static double inputValue() {
         double input;
@@ -154,19 +194,26 @@ public final class Registration {
         return input;
     }
 
+    /**
+     * Метод реализует подачу показания
+     */
+
     public static void putIndication() {
         if (currUser != null && currAdmin == null) {
             int status = choiceStatusIndication();
             if (status == 0) return;
             double value = inputValue();
 
-            if (status == 1) currUser.getColdWaterIndication().addIndication(value);
-            if (status == 2) currUser.getHotWaterIndication().addIndication(value);
-            if (status == 3) currUser.getHeatingIndication().addIndication(value);
+            if (status == 1) currUser.getColdWater().addIndication(value);
+            if (status == 2) currUser.getHotWater().addIndication(value);
+            if (status == 3) currUser.getHeating().addIndication(value);
         } else System.out.println("Вы не авторизованы как пользователь!");
     }
 
-    // 1 - history, 2 - actual, 3 - toMonth
+
+    /**
+     * Метод реализует получение информации о показаниях
+     */
     public static void getInfo() {
         if (currAdmin == null && currUser == null) {
             System.out.println("Вы не авторизованы!");
@@ -196,6 +243,10 @@ public final class Registration {
         }
     }
 
+    /**
+     * Метод реализует получение вида информации о показаниях
+     */
+
     private static int choiceStatusInfo() {
         int input;
 
@@ -217,6 +268,10 @@ public final class Registration {
 
         return input;
     }
+
+    /**
+     * Метод реализует инициализацию полей класса Registration
+     */
     public static void init() {
         admins = new HashMap<>();
         users = new HashMap<>();
@@ -225,6 +280,9 @@ public final class Registration {
         scan = new Scanner(System.in);
     }
 
+    /**
+     * Метод реализует шифрование передаваемого пароля
+     */
     private static String encrypt(String password) {
         String encodedHash;
         try {

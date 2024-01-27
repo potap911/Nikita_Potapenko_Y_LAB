@@ -1,16 +1,23 @@
 package Out;
 
-import Indications.ColdWaterIndication;
-import Indications.HeatingIndication;
-import Indications.HotWaterIndication;
+import Indications.Indication;
 import Registration.User;
 
+
+/**
+ * Класс реализует консольный вывод для пользователя согласно запросу
+ */
 public class Printer {
 
+        /**
+         * Метод реализует консольный вывод истории подачи показаний переданного пользователя
+         * @param user - пользователь
+         */
+
     public static void printHistory(User user) {
-            ColdWaterIndication coldWater = user.getColdWaterIndication();
-            HotWaterIndication hotWater = user.getHotWaterIndication();
-            HeatingIndication heating = user.getHeatingIndication();
+            Indication coldWater = user.getColdWater();
+            Indication hotWater = user.getHotWater();
+            Indication heating = user.getHeating();
 
             System.out.println("\tПоказания счетчиков пользователя: " + user.getLogin());
 
@@ -27,10 +34,15 @@ public class Printer {
             System.out.println();
     }
 
+        /**
+         * Метод реализует консольный вывод актуальных показаний переданного пользователя
+         * @param user - пользователь
+         */
+
     public static void printActualIndications(User user) {
-            ColdWaterIndication coldWater = user.getColdWaterIndication();
-            HotWaterIndication hotWater = user.getHotWaterIndication();
-            HeatingIndication heating = user.getHeatingIndication();
+            Indication coldWater = user.getColdWater();
+            Indication hotWater = user.getHotWater();
+            Indication heating = user.getHeating();
 
             System.out.println("\tПоказания счетчиков пользователя: " + user.getLogin());
 
@@ -40,10 +52,16 @@ public class Printer {
             System.out.println();
     }
 
+        /**
+         * Метод реализует консольный вывод показаний за конкретный месяц переданного пользователя
+         * @param user - пользователь
+         * @param month - конкретный месяц
+         */
+
     public static void printIndicationsToMonth(User user, int month) {
-            ColdWaterIndication coldWater = user.getColdWaterIndication();
-            HotWaterIndication hotWater = user.getHotWaterIndication();
-            HeatingIndication heating = user.getHeatingIndication();
+            Indication coldWater = user.getColdWater();
+            Indication hotWater = user.getHotWater();
+            Indication heating = user.getHeating();
 
             System.out.println("\tПоказания счетчиков пользователя: " + user.getLogin());
 
