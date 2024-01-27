@@ -1,24 +1,36 @@
 package Indications;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.LinkedHashMap;
 
+/**
+ * Класс счетчика горячей воды с полями <b>lastValue</b>, <b>lastDate</b>, <b>history</b>,
+ * Реализует интерфейс Indication
+ */
+
+@Getter
+@Setter
 public class HotWaterIndication implements Indication {
-    private double lastValue;
-    private LocalDate lastDate;
+    /** Поле актуальное значение*/
+    private double actualValue;
+    /** Поле актуальная дата*/
+    private LocalDate actualDate;
+    /** Поле история показаний*/
     private LinkedHashMap<LocalDate, Double> history;
 
     public HotWaterIndication() {
         history = new LinkedHashMap<>();
-        lastValue = 0.0;
-        lastDate = null;
+        actualValue = 0.0;
+        actualDate = null;
     }
 
     @Override
     public void addIndication(double value) {
-        lastDate = Indication.super.addIndication(history, lastDate, lastValue, value);
-        if (lastDate != null) lastValue = history.get(lastDate);
+        actualDate = Indication.super.addIndication(history, actualDate, actualValue, value);
+        if (actualDate != null) actualValue = history.get(actualDate);
     }
 
     @Override
@@ -33,31 +45,8 @@ public class HotWaterIndication implements Indication {
 
     @Override
     public String getActualIndication() {
-        return Indication.super.getActualIndication(lastDate, lastValue);
+        return Indication.super.getActualIndication(actualDate, actualValue);
     }
 
-    public double getLastValue() {
-        return lastValue;
-    }
-
-    public void setLastValue(double lastValue) {
-        this.lastValue = lastValue;
-    }
-
-    public LocalDate getLastDate() {
-        return lastDate;
-    }
-
-    public void setLastDate(LocalDate lastDate) {
-        this.lastDate = lastDate;
-    }
-
-    public LinkedHashMap<LocalDate, Double> getHistory() {
-        return history;
-    }
-
-    public void setHistory(LinkedHashMap<LocalDate, Double> history) {
-        this.history = history;
-    }
 
 }

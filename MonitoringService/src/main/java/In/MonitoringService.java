@@ -4,7 +4,17 @@ import Registration.Registration;
 
 import java.util.Scanner;
 
+/**
+ * <h1> MonitoringService </h1>
+ * Статический класс MonitoringService реализует старт сервиса, получение пользовательского ввода,
+ * обработку его команд и вызов соответствующего команде алгоритма
+ *
+ */
 public final class MonitoringService {
+
+    /**
+     * Метод реализует ввод пользователя и инициализацию класса Registration
+     */
     public static void startService() {
         Scanner scanner = new Scanner(System.in);
         Registration.init();
@@ -19,6 +29,11 @@ public final class MonitoringService {
             command(input);
         }
     }
+
+    /**
+     * Метод реализует обработку ввода пользователя и вызывает соответствующие фабричные методы класса Registration
+     * @param input - ввод пользователя
+     */
 
     private static void command(String input) {
         switch (input) {
@@ -36,6 +51,9 @@ public final class MonitoringService {
         }
     }
 
+    /**
+     * Метод печатает справку для пользователя
+     */
     private static void printHelp() {
         System.out.println("\tСписок команд:\n" +
                         "status : статус авторизации\n" +

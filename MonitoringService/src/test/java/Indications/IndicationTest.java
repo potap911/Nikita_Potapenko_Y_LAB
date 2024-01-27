@@ -27,12 +27,12 @@ class IndicationTest {
         for(int i = 1; i <= 8; i++) {
             history.put(LocalDate.of(2023, i, i), (double) i);
             if (i == 8) {
-                coldWaterActual.setLastDate(LocalDate.of(2023, i, i)); coldWaterActual.setLastValue(i);
-                hotWaterActual.setLastDate(LocalDate.of(2023, i, i)); hotWaterActual.setLastValue(i);
-                heatingActual.setLastDate(LocalDate.of(2023, i, i)); heatingActual.setLastValue(i);
-                coldWaterExpected.setLastDate(LocalDate.of(2023, i, i)); coldWaterExpected.setLastValue(i);
-                heatingExpected.setLastDate(LocalDate.of(2023, i, i)); heatingExpected.setLastValue(i);
-                hotWaterExpected.setLastDate(LocalDate.of(2023, i, i)); hotWaterExpected.setLastValue(i);
+                coldWaterActual.setActualDate(LocalDate.of(2023, i, i)); coldWaterActual.setActualValue(i);
+                hotWaterActual.setActualDate(LocalDate.of(2023, i, i)); hotWaterActual.setActualValue(i);
+                heatingActual.setActualDate(LocalDate.of(2023, i, i)); heatingActual.setActualValue(i);
+                coldWaterExpected.setActualDate(LocalDate.of(2023, i, i)); coldWaterExpected.setActualValue(i);
+                heatingExpected.setActualDate(LocalDate.of(2023, i, i)); heatingExpected.setActualValue(i);
+                hotWaterExpected.setActualDate(LocalDate.of(2023, i, i)); hotWaterExpected.setActualValue(i);
             }
         }
         coldWaterActual.setHistory(history); coldWaterExpected.setHistory(history);
@@ -46,12 +46,12 @@ class IndicationTest {
 
          LocalDate nowDateExpected = LocalDate.now();
          coldWaterExpected.getHistory().put(nowDateExpected, 10.0);
-         coldWaterExpected.setLastDate(nowDateExpected);
-         coldWaterExpected.setLastValue(10.0);
+         coldWaterExpected.setActualDate(nowDateExpected);
+         coldWaterExpected.setActualValue(10.0);
 
         Assertions.assertEquals(coldWaterExpected.getHistory(), coldWaterActual.getHistory());
-        Assertions.assertEquals(coldWaterExpected.getLastDate(), coldWaterActual.getLastDate());
-        assertEquals(coldWaterExpected.getLastValue(), coldWaterActual.getLastValue());
+        Assertions.assertEquals(coldWaterExpected.getActualDate(), coldWaterActual.getActualDate());
+        assertEquals(coldWaterExpected.getActualValue(), coldWaterActual.getActualValue());
     }
     @Test
     @DisplayName("Добавления показания горячей воды")
@@ -60,12 +60,12 @@ class IndicationTest {
 
         LocalDate nowDateExpected = LocalDate.now();
         hotWaterExpected.getHistory().put(nowDateExpected, 10.0);
-        hotWaterExpected.setLastDate(nowDateExpected);
-        hotWaterExpected.setLastValue(10.0);
+        hotWaterExpected.setActualDate(nowDateExpected);
+        hotWaterExpected.setActualValue(10.0);
 
         Assertions.assertEquals(hotWaterExpected.getHistory(), hotWaterActual.getHistory());
-        Assertions.assertEquals(hotWaterExpected.getLastDate(), hotWaterActual.getLastDate());
-        assertEquals(hotWaterExpected.getLastValue(), hotWaterActual.getLastValue());
+        Assertions.assertEquals(hotWaterExpected.getActualDate(), hotWaterActual.getActualDate());
+        assertEquals(hotWaterExpected.getActualValue(), hotWaterActual.getActualValue());
 
     }
     @Test
@@ -75,12 +75,12 @@ class IndicationTest {
 
         LocalDate nowDateExpected = LocalDate.now();
         heatingExpected.getHistory().put(nowDateExpected, 10.0);
-        heatingExpected.setLastDate(nowDateExpected);
-        heatingExpected.setLastValue(10.0);
+        heatingExpected.setActualDate(nowDateExpected);
+        heatingExpected.setActualValue(10.0);
 
         Assertions.assertEquals(heatingExpected.getHistory(), heatingActual.getHistory());
-        Assertions.assertEquals(heatingExpected.getLastDate(), heatingActual.getLastDate());
-        assertEquals(heatingExpected.getLastValue(), heatingActual.getLastValue());
+        Assertions.assertEquals(heatingExpected.getActualDate(), heatingActual.getActualDate());
+        assertEquals(heatingExpected.getActualValue(), heatingActual.getActualValue());
 
     }
 
@@ -90,8 +90,8 @@ class IndicationTest {
         heatingActual.addIndication(5);
 
         Assertions.assertEquals(heatingExpected.getHistory(), heatingActual.getHistory());
-        Assertions.assertEquals(heatingExpected.getLastDate(), heatingActual.getLastDate());
-        assertEquals(heatingExpected.getLastValue(), heatingActual.getLastValue());
+        Assertions.assertEquals(heatingExpected.getActualDate(), heatingActual.getActualDate());
+        assertEquals(heatingExpected.getActualValue(), heatingActual.getActualValue());
     }
 
     @Test
@@ -102,8 +102,8 @@ class IndicationTest {
         heatingActual.addIndication(11);
 
         Assertions.assertEquals(heatingExpected.getHistory(), heatingActual.getHistory());
-        Assertions.assertEquals(heatingExpected.getLastDate(), heatingActual.getLastDate());
-        assertEquals(heatingExpected.getLastValue(), heatingActual.getLastValue());
+        Assertions.assertEquals(heatingExpected.getActualDate(), heatingActual.getActualDate());
+        assertEquals(heatingExpected.getActualValue(), heatingActual.getActualValue());
     }
 
     @Test

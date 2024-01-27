@@ -8,12 +8,18 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Класс для регистрации, авторизации, хранения пользователей и регистрации действий с ними
+ * @param
+ */
 public final class Registration {
     private static HashMap<String, Admin> admins;
     private static HashMap<String, User> users;
     private static Admin currAdmin;
     private static User currUser;
     private static Scanner scan;
+
+
 
     public static void logIn() {
         System.out.println("\tАвторизация");
