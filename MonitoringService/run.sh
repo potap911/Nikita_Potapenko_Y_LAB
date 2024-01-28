@@ -1,0 +1,1 @@
+/home/nikita/.jdks/semeru-17.0.8/bin/java -javaagent:/snap/intellij-idea-community/478/lib/idea_rt.jar=38923:/snap/intellij-idea-community/478/bin -Dfile.encoding=UTF-8 -classpath /home/nikita/Desktop/Nikita_Potapenko_Y_LAB/MonitoringService/target/classes App

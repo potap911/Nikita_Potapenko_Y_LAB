@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de5f4268-f71f-408a-bbda-66b4676f96a9" name="Changes" comment="ok">
+      <change afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +36,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.App.executor": "Run",
+    "Docker.Dockerfile.executor": "Run",
     "JUnit.IndicationTest.addIndicationColdWater.executor": "Run",
     "JUnit.IndicationTest.addIndicationHeatingToDouble.executor": "Run",
     "JUnit.IndicationTest.addIndicationHeatingToLess.executor": "Run",
@@ -46,6 +48,7 @@
     "JUnit.IndicationTest.getIndicationToMonth2.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.MonitoringService [clean].executor": "Run",
+    "Maven.MonitoringService [deploy].executor": "Run",
     "Maven.MonitoringService [install].executor": "Run",
     "Maven.MonitoringService [site].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -132,29 +135,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IndicationTest.getIndicationToMonth2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MonitoringService" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Indications.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Indications" />
-      <option name="MAIN_CLASS_NAME" value="Indications.IndicationTest" />
-      <option name="METHOD_NAME" value="getIndicationToMonth2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile" />
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
+        <item itemvalue="Docker.Dockerfile" />
         <item itemvalue="JUnit.IndicationTest" />
         <item itemvalue="JUnit.IndicationTest.getActualIndication" />
         <item itemvalue="JUnit.IndicationTest.getActualIndicationAbsent" />
-        <item itemvalue="JUnit.IndicationTest.getIndicationToMonth2" />
       </list>
     </recent_temporary>
   </component>
@@ -270,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706439771862</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="ok">
+      <option name="closed" value="true" />
+      <created>1706441945099</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1706441945099</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
