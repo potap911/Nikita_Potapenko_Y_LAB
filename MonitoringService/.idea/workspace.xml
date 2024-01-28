@@ -6,15 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="de5f4268-f71f-408a-bbda-66b4676f96a9" name="Changes" comment="ok">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/In/MonitoringService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/In/MonitoringService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Indications/Indication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Indications/Indication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Indications/IndicationName.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Out/Printer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Out/Printer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Registration/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Registration/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Registration/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Registration/RegistrationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Registration/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Registration/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Indications/IndicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Indications/IndicationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +45,9 @@
     "JUnit.IndicationTest.getIndicationToMonth.executor": "Run",
     "JUnit.IndicationTest.getIndicationToMonth2.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.MonitoringService [clean].executor": "Run",
+    "Maven.MonitoringService [install].executor": "Run",
+    "Maven.MonitoringService [site].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -77,7 +71,7 @@
       <recent name="Indications" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.IndicationTest">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="App" />
       <module name="MonitoringService" />
@@ -156,8 +150,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.IndicationTest" />
         <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.IndicationTest" />
         <item itemvalue="JUnit.IndicationTest.getActualIndication" />
         <item itemvalue="JUnit.IndicationTest.getActualIndicationAbsent" />
         <item itemvalue="JUnit.IndicationTest.getIndicationToMonth2" />
@@ -268,7 +262,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706355507218</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ok">
+      <option name="closed" value="true" />
+      <created>1706439771862</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1706439771862</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
