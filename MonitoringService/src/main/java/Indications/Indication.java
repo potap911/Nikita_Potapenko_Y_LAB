@@ -8,13 +8,14 @@ import java.util.LinkedHashMap;
 
 /**
  * <h1> Indication </h1>
- * Класс реализует хранение показаний счетчиков, а также добавление и получение информации о показаниях
+ * Класс реализует хранение показаний счетчика, а также добавление и получение информации о показаниях
  */
+
 @Getter
 @Setter
 public class Indication {
     /** Поле название показания*/
-    private IndicationName name;
+    private String name;
     /** Поле актуальная дата*/
     private LocalDate actualDate;
     /** Поле актуальное значение*/
@@ -23,7 +24,11 @@ public class Indication {
     /** Поле история показаний*/
     private LinkedHashMap<LocalDate, Double> history;
 
-    public Indication(IndicationName name) {
+    /**
+     * Констуктор для создания объекта класса Indication
+     * @param name название счетчика
+     */
+    public Indication(String name) {
         this.name = name;
         actualDate = null;
         actualValue = 0.0;

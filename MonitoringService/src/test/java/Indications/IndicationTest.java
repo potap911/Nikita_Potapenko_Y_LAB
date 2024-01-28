@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * <h1> RegistrationService </h1>
+ * <h1> IndicationTest </h1>
  * Тестовый класс для проверки методов класса Indication
  */
 
@@ -27,9 +27,9 @@ class IndicationTest {
      */
     @BeforeEach
     void initIndications() {
-        coldWaterActual = new Indication(IndicationName.COLD_WATER); coldWaterExpected = new Indication(IndicationName.COLD_WATER);
-        hotWaterActual = new Indication(IndicationName.HOT_WATER); hotWaterExpected = new Indication(IndicationName.HOT_WATER);
-        heatingActual = new Indication(IndicationName.HEATING); heatingExpected = new Indication(IndicationName.HEATING);
+        coldWaterActual = new Indication("Счетчик холодной воды"); coldWaterExpected = new Indication("Счетчик холодной воды");
+        hotWaterActual = new Indication("Счетчик горячей воды"); hotWaterExpected = new Indication("Счетчик горячей воды");
+        heatingActual = new Indication("Счетчик отопления"); heatingExpected = new Indication("Счетчик отопления");
 
 
         LinkedHashMap<LocalDate, Double> history = new LinkedHashMap<>();
@@ -150,11 +150,9 @@ class IndicationTest {
     @Test
     @DisplayName("Получение актуальных показаний из пустого списка")
     void getActualIndicationAbsent() {
-        Indication newHeating = new Indication(IndicationName.HEATING);
+        Indication newHeating = new Indication("Счетчик отопления");
         String actual = newHeating.getActualIndication();
         String expected = "История пуста";
         assertEquals(expected, actual);
     }
-
-
 }

@@ -1,11 +1,11 @@
 package Registration;
 
 import Indications.Indication;
-import Indications.IndicationName;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 
 /**
  * <h1> User </h1>
@@ -28,13 +28,11 @@ public class User {
 
     /** Поле пароль пользователя*/
     private String password;
-    /** Поле счетчик холодной воды*/
-    private Indication coldWater;
-    /** Поле счетчик горячей воды*/
-    private Indication hotWater;
-    /** Поле счетчик отопления*/
-    private Indication heating;
-    /** Поле дата регистрации*/
+    /** Поле список счетчиков с историями показаний*/
+    private HashMap<Integer, Indication> counters;
+    /** Поле колличество счетчиков */
+    private int cntCounter;
+    /** Поле даты регистрации*/
     private LocalDate regDate;
 
     /**
@@ -46,9 +44,11 @@ public class User {
     public User(String login, String password) {
         this.login = login;
         this.password = password;
-        coldWater = new Indication(IndicationName.COLD_WATER);
-        hotWater = new Indication(IndicationName.HOT_WATER);
-        heating = new Indication(IndicationName.HEATING);
+        counters = new HashMap<>(RegistrationService.cntCounter);
+        for (Integer number : RegistrationService.counterMap.keySet()) {
+            counters.put(number, new Indication(RegistrationService.counterMap.get(number)));
+        }
+        cntCounter = RegistrationService.cntCounter;
         regDate = LocalDate.now();
     }
 
@@ -70,9 +70,22 @@ public class User {
         this.accountNumber = accountNumber;
         this.login = login;
         this.password = password;
-        this.coldWater = new Indication(IndicationName.COLD_WATER);
-        this.hotWater = new Indication(IndicationName.HOT_WATER);
-        this.heating = new Indication(IndicationName.HEATING);
+        cntCounter = 3;
         this.regDate = regDate;
+        counters = new HashMap<>(3);
+        for (Integer number : RegistrationService.counterMap.keySet()) {
+            counters.put(number, new Indication(RegistrationService.counterMap.get(number)));
+        }
+        cntCounter = 3;
     }
+
+    /**
+     * Метод реализует добавление нового счетчика
+     * @param name название нового счетчика
+     */
+    public void addCounter(String name) {
+        cntCounter++;
+        counters.put(cntCounter, new Indication(name));
+    }
+
 }

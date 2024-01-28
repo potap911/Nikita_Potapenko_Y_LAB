@@ -43,7 +43,6 @@ public class Admin {
      * @param password - пароль
      */
 
-
     public Admin(String name, int id, String login, String password) {
         this.name = name;
         this.id = id;
@@ -51,4 +50,5 @@ public class Admin {
         this.password = password;
         regDate = LocalDate.now();
     }
+
 }

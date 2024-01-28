@@ -3,71 +3,104 @@ package Out;
 import Indications.Indication;
 import Registration.User;
 
+import java.util.HashMap;
 
-/**
- * Класс реализует консольный вывод для пользователя согласно запросу
- */
+
+    /**
+    * <h1> Printer </h1>
+    * Класс реализует консольный вывод для пользователя согласно запросу
+    */
 public class Printer {
 
         /**
          * Метод реализует консольный вывод истории подачи показаний переданного пользователя
-         * @param user - пользователь
+         * @param user пользователь
          */
 
     public static void printHistory(User user) {
-            Indication coldWater = user.getColdWater();
-            Indication hotWater = user.getHotWater();
-            Indication heating = user.getHeating();
+        HashMap<Integer, Indication> counterMap = user.getCounters();
 
-            System.out.println("\tПоказания счетчиков пользователя: " + user.getLogin());
+        System.out.println("\tПоказания счетчиков пользователя: " + user.getLogin());
 
-            System.out.println("Показания счетчика холодной воды: ");
-            System.out.println(coldWater.getHistoryIndications());
-            System.out.println();
-
-            System.out.println("Показания счетчика горячей воды: ");
-            System.out.println(hotWater.getHistoryIndications());
-            System.out.println();
-
-            System.out.println("Показания счетчика отопления: ");
-            System.out.println(heating.getHistoryIndications());
-            System.out.println();
+        for (int number = 1; number <= user.getCntCounter(); number++) {
+            Indication counter = counterMap.get(number);
+            System.out.println("История показаний счетчика: " + number + "." + counter.getName());
+            System.out.println(counter.getHistoryIndications());
+        }
+        System.out.println();
     }
 
         /**
          * Метод реализует консольный вывод актуальных показаний переданного пользователя
-         * @param user - пользователь
+         * @param user пользователь
          */
 
     public static void printActualIndications(User user) {
-            Indication coldWater = user.getColdWater();
-            Indication hotWater = user.getHotWater();
-            Indication heating = user.getHeating();
+        HashMap<Integer, Indication> counterMap = user.getCounters();
 
-            System.out.println("\tПоказания счетчиков пользователя: " + user.getLogin());
+        System.out.println("\tПоказания счетчиков пользователя: " + user.getLogin());
 
-            System.out.println("Актуальные показания счетчика холодной воды: " + coldWater.getActualIndication());
-            System.out.println("Актуальные показания счетчика горячей воды: " + hotWater.getActualIndication());
-            System.out.println("Актуальные показания счетчика отопления: " + heating.getActualIndication());
-            System.out.println();
+        for (int number = 1; number <= user.getCntCounter(); number++) {
+            Indication counter = counterMap.get(number);
+            System.out.println("Актуальные показания счетчика: " + number + "." + counter.getName());
+            System.out.println("\t" + counter.getActualIndication());
+        }
+        System.out.println();
     }
 
         /**
          * Метод реализует консольный вывод показаний за конкретный месяц переданного пользователя
-         * @param user - пользователь
-         * @param month - конкретный месяц
+         * @param user пользователь
+         * @param month конкретный месяц
          */
 
     public static void printIndicationsToMonth(User user, int month) {
-            Indication coldWater = user.getColdWater();
-            Indication hotWater = user.getHotWater();
-            Indication heating = user.getHeating();
+        HashMap<Integer, Indication> counterMap = user.getCounters();
 
-            System.out.println("\tПоказания счетчиков пользователя: " + user.getLogin());
+        System.out.println("\tПоказания счетчиков пользователя: " + user.getLogin());
 
-            System.out.println("Показания счетчика холодной воды в этом месяце: " + coldWater.getIndicationToMonth(month));
-            System.out.println("Показания счетчика горячей воды в этом месяце: " + hotWater.getIndicationToMonth(month));
-            System.out.println("Показания счетчика отопленияв в этом месяце: " + heating.getIndicationToMonth(month));
-            System.out.println();
+        for (int number = 1; number <= user.getCntCounter(); number++) {
+            Indication counter = counterMap.get(number);
+            System.out.println("показания счетчика: " + number + "." + counter.getName() + " в " + month + " месяце");
+            System.out.println("\t" + counter.getIndicationToMonth(month));
+        }
+        System.out.println();
+    }
+    /**
+     * Метод реализует консольный вывод списка доступных счетчиков
+     * @param user пользователь
+     */
+
+    public static void printCounterList(User user) {
+        HashMap<Integer, Indication> counterMap = user.getCounters();
+        for (int number = 1; number <= user.getCntCounter(); number++) {
+            System.out.println(number + "." + counterMap.get(number).getName());
+        }
+    }
+
+    /**
+     * Метод печатает справку для пользователя
+     */
+    public static void printHelp() {
+        System.out.println("\tСписок команд:\n" +
+                "status : статус авторизации\n" +
+                "login  : авторизоваться\n" +
+                "logout : разлогиниться\n" +
+                "reg    : зарегестрировать пользователя\n" +
+                "get    : получить информацию о показаниях\n" +
+                "post   : отправить показания\n" +
+                "add    : добавить счетчик\n" +
+                "log    : получить аудит действий пользователя\n" +
+                "q      : выйти и разлогиниться"
+        );
+    }
+
+        /**
+         * Метод реализует консольный вывод переданного сообщения
+         * @param message сообщение для пользователя
+         */
+
+    public static void message(String message) {
+        System.out.println(message);
     }
 }
